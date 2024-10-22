@@ -1,5 +1,4 @@
-(ns ru.jeleyka.functionalprogramming.lab1.task22
-  (:use [clojure.string :only [split]]))
+(ns ru.jeleyka.functionalprogramming.lab1.task22)
 
 (defn get-data [fname]
   (sort (split (slurp fname) #",")))
@@ -11,7 +10,7 @@
       (recur idx (rest nm) (+ acc char-val)))))
 
 (defn solve-tail [fname]
-  (let [data (sort (map #(clojure.string/replace % "\"" "") (split (slurp fname) #",")))]
+  (let [data (sort (map #(clojure.string/replace % "\"" "") (clojure.string/split (slurp fname) #",")))]
     (loop [idx 1 names data total 0]
       (if (empty? names)
         total
