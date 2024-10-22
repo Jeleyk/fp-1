@@ -1,7 +1,7 @@
 (ns ru.jeleyka.functionalprogramming.lab1.task22)
 
 (defn get-data [fname]
-  (sort (split (slurp fname) #",")))
+  (sort (clojure.string/split (slurp fname) #",")))
 
 (defn name-score-tail [idx nm acc]
   (if (empty? nm)
@@ -28,7 +28,7 @@
           (map name-score (iterate inc 1) (get-data fname))))
 
 (defn infinite-names [fname]
-  (let [data (sort (split (slurp fname) #","))]
+  (let [data (sort (clojure.string/split (slurp fname) #","))]
     (map #(name-score %1 %2) (iterate inc 1) data)))
 
 (defn solve-lazy [fname]
