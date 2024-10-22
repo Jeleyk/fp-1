@@ -1,4 +1,5 @@
-(ns ru.jeleyka.functionalprogramming.lab1.task22)
+(ns ru.jeleyka.functionalprogramming.lab1.task22
+  (:require [clojure.string]))
 
 (defn get-data [fname]
   (sort (clojure.string/split (slurp fname) #",")))
