@@ -22,14 +22,36 @@
 ### Задача №9
 
 ```clojure
+(defn is-rhs-triangle? [a b c]
+  (= (+ (* a a) (* b b)) (* c c)))
+
+(defn generate-triangles []
+  (map (fn [[a b]] [a b (- 1000 a b)])
+       (for [a (range 1 1001)
+             b (range a (- 1001 a))]
+         [a b])))
+
+(defn solve-map-filter []
+  (let [[a b c] (first (filter #(apply is-rhs-triangle? %) (generate-triangles)))]
+    (* a b c)))
 ```
 
 ### Задача №22
 
 ```clojure
-```
+(defn get-data [fname]
+  (sort (clojure.string/split (slurp fname) #",")))
 
-```clojure
+(defn name-score [idx nm]
+  (->> nm
+       (remove #(= % \"))
+       (map #(- (int %) 64))
+       (reduce +)
+       (* idx)))
+
+(defn solve [fname]
+  (reduce +
+          (map name-score (iterate inc 1) (get-data fname))))
 ```
 
 ## Заключение
